@@ -1,0 +1,14 @@
+{
+  "infPedReg": {
+    "tpAmb": 2,
+    "verAplic": "TesteNT009",
+    "dhEvento": "2026-10-20T11:00:00-03:00",
+    "CNPJAutor": "12345678000195",
+    "chNFSe": "11111111111111111111111111111111111111111111111111",
+    "e101101": {
+      "xDesc": "Cancelamento de NFS-e",
+      "cMotivo": 1,
+      "xMotivo": "Erro na emissão"
+    }
+  }
+}

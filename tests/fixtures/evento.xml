@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedRegEvento xmlns="http://www.sped.fazenda.gov.br/nfse" versao="1.01"><infPedReg Id="PRE11111111111111111111111111111111111111111111111111101101"><tpAmb>2</tpAmb><verAplic>TesteNT009</verAplic><dhEvento>2026-10-20T11:00:00-03:00</dhEvento><CNPJAutor>12345678000195</CNPJAutor><chNFSe>11111111111111111111111111111111111111111111111111</chNFSe><e101101><xDesc>Cancelamento de NFS-e</xDesc><cMotivo>1</cMotivo><xMotivo>Erro na emissão</xMotivo></e101101></infPedReg></pedRegEvento>

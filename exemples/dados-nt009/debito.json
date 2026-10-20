@@ -1,0 +1,34 @@
+{
+    "infDPS": {
+        "tpAmb": 2,
+        "dhEmi": "2026-10-20T10:00:00-03:00",
+        "verAplic": "TesteNT009",
+        "serie": "2",
+        "nDPS": "101",
+        "dCompet": "2026-10-20",
+        "tpEmit": 1,
+        "cLocEmi": "4316808",
+        "prest": {
+            "CNPJ": "12345678000195",
+            "regTrib": {
+                "opSimpNac": 1
+            }
+        },
+        "IBSCBS": {
+            "valores": {
+                "trib": {
+                    "CST": "000",
+                    "cClassTrib": "000001",
+                    "gIBSCBS": {
+                        "gIBSCBSAjuste": {
+                            "vIBS": "1.00",
+                            "vCBS": "2.00"
+                        }
+                    }
+                }
+            }
+        },
+        "finNFSe": "2",
+        "tpNFSeDebito": "01"
+    }
+}
