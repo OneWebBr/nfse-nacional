@@ -93,9 +93,46 @@ class NovosGruposTest extends TestCase
         self::assertSame('0.62', $xpath->evaluate('string(//n:vPis)'));
     }
 
+    public static function novos_fatos_geradores(): array
+    {
+        return [
+            ['bens-imateriais', '990201'],
+            ['imoveis', '990301'], ['imoveis', '990302'], ['imoveis', '990303'],
+            ['imoveis', '990304'], ['imoveis', '990305'],
+            ['bens-moveis', '990401'],
+        ];
+    }
+
+    #[DataProvider('novos_fatos_geradores')]
+    public function test_monta_novos_fatos_geradores_com_xsd_do_release(string $exemplo, string $codigo): void
+    {
+        $dados = json_decode(file_get_contents(__DIR__ . '/../exemples/dados-nt009/' . $exemplo . '.json'), false, 512, JSON_THROW_ON_ERROR);
+        $dados->infDPS->serv->cServ->cTribNac = $codigo;
+        $xpath = $this->validar($dados);
+        self::assertSame($codigo, $xpath->evaluate('string(//n:cTribNac)'));
+        self::assertSame('100.00', $xpath->evaluate('string(//n:vServPrest/n:vServ)'));
+        if ($exemplo === 'imoveis') {
+            self::assertSame('4316808', $xpath->evaluate('string(//n:IBSCBS/n:imovel/n:cMun)'));
+            self::assertSame('50.00', $xpath->evaluate('string(//n:imovel/n:gLocacao/n:pCopropriedade)'));
+            self::assertSame('200.00', $xpath->evaluate('string(//n:imovel/n:gLocacao/n:vTotOper)'));
+            self::assertSame(2, $xpath->query('//n:imovel/n:gUnidImob')->length);
+            self::assertSame(4, $xpath->query('//n:gUnidImob/n:gAjusteBCLocImoveis')->length);
+            self::assertSame('12345678', $xpath->evaluate('string(//n:imovel/n:gUnidImob[1]/n:cCIB)'));
+            self::assertSame('200', $xpath->evaluate('string(//n:imovel/n:gUnidImob[2]/n:end/n:nro)'));
+            self::assertSame('5.00', $xpath->evaluate('string(//n:vDescIncond)'));
+            self::assertSame('10.00', $xpath->evaluate('string(//n:gLocacao/n:vDescIncondTot)'));
+        } elseif ($exemplo === 'bens-moveis') {
+            self::assertSame(2, $xpath->query('//n:IBSCBS/n:bensMoveis')->length);
+            self::assertSame('84713012', $xpath->evaluate('string(//n:IBSCBS/n:bensMoveis[1]/n:cNCMBemMovel)'));
+            self::assertSame('2', $xpath->evaluate('string(//n:IBSCBS/n:bensMoveis[2]/n:qtdNCMBemMovel)'));
+        } else {
+            self::assertSame(0, $xpath->query('//n:imovel | //n:bensMoveis')->length);
+        }
+    }
+
     public static function grupos_excluidos(): array
     {
-        return [['imovel'], ['bensMoveis'], ['condominios']];
+        return [['condominios']];
     }
 
     #[DataProvider('grupos_excluidos')]

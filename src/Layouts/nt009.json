@@ -342,6 +342,8 @@
         "IBSCBS/tpEnteGov",
         "IBSCBS/indDest",
         "IBSCBS/dest",
+        "IBSCBS/imovel",
+        "IBSCBS/bensMoveis",
         "IBSCBS/valores"
       ]
     },
@@ -884,6 +886,185 @@
     },
     "serv/atvEvento/end/xBairro": {
       "nome": "xBairro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel": {
+      "nome": "imovel",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/imovel/cMun",
+        "IBSCBS/imovel/gLocacao",
+        "IBSCBS/imovel/gUnidImob"
+      ]
+    },
+    "IBSCBS/imovel/cMun": {
+      "nome": "cMun",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gLocacao": {
+      "nome": "gLocacao",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/imovel/gLocacao/pCopropriedade",
+        "IBSCBS/imovel/gLocacao/vTotOper",
+        "IBSCBS/imovel/gLocacao/vDescIncondTot",
+        "IBSCBS/imovel/gLocacao/vDescCondTot",
+        "IBSCBS/imovel/gLocacao/dVencOrig"
+      ]
+    },
+    "IBSCBS/imovel/gLocacao/pCopropriedade": {
+      "nome": "pCopropriedade",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gLocacao/vTotOper": {
+      "nome": "vTotOper",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gLocacao/vDescIncondTot": {
+      "nome": "vDescIncondTot",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gLocacao/vDescCondTot": {
+      "nome": "vDescCondTot",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gLocacao/dVencOrig": {
+      "nome": "dVencOrig",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob": {
+      "nome": "gUnidImob",
+      "grupo": true,
+      "repetido": true,
+      "filhos": [
+        "IBSCBS/imovel/gUnidImob/inscImobFisc",
+        "IBSCBS/imovel/gUnidImob/cCIB",
+        "IBSCBS/imovel/gUnidImob/end",
+        "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis"
+      ]
+    },
+    "IBSCBS/imovel/gUnidImob/inscImobFisc": {
+      "nome": "inscImobFisc",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/cCIB": {
+      "nome": "cCIB",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/end": {
+      "nome": "end",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/imovel/gUnidImob/end/CEP",
+        "IBSCBS/imovel/gUnidImob/end/xLgr",
+        "IBSCBS/imovel/gUnidImob/end/nro",
+        "IBSCBS/imovel/gUnidImob/end/xCpl",
+        "IBSCBS/imovel/gUnidImob/end/xBairro"
+      ]
+    },
+    "IBSCBS/imovel/gUnidImob/end/CEP": {
+      "nome": "CEP",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/end/xLgr": {
+      "nome": "xLgr",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/end/nro": {
+      "nome": "nro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/end/xCpl": {
+      "nome": "xCpl",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/end/xBairro": {
+      "nome": "xBairro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis": {
+      "nome": "gAjusteBCLocImoveis",
+      "grupo": true,
+      "repetido": true,
+      "filhos": [
+        "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/tpAjusteBCLocImoveis",
+        "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/xTpAjusteBCLocImoveis",
+        "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/vAjusteBCLocImoveis"
+      ]
+    },
+    "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/tpAjusteBCLocImoveis": {
+      "nome": "tpAjusteBCLocImoveis",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/xTpAjusteBCLocImoveis": {
+      "nome": "xTpAjusteBCLocImoveis",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/imovel/gUnidImob/gAjusteBCLocImoveis/vAjusteBCLocImoveis": {
+      "nome": "vAjusteBCLocImoveis",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/bensMoveis": {
+      "nome": "bensMoveis",
+      "grupo": true,
+      "repetido": true,
+      "filhos": [
+        "IBSCBS/bensMoveis/cNCMBemMovel",
+        "IBSCBS/bensMoveis/xNCMBemMovel",
+        "IBSCBS/bensMoveis/qtdNCMBemMovel"
+      ]
+    },
+    "IBSCBS/bensMoveis/cNCMBemMovel": {
+      "nome": "cNCMBemMovel",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/bensMoveis/xNCMBemMovel": {
+      "nome": "xNCMBemMovel",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/bensMoveis/qtdNCMBemMovel": {
+      "nome": "qtdNCMBemMovel",
       "grupo": false,
       "repetido": false,
       "filhos": []

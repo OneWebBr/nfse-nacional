@@ -1534,7 +1534,7 @@ class Dps implements DpsInterface
         if (isset($dps->valores->vdedred) || isset($ibs->valores->greerepres)) {
             throw new InvalidArgumentException('NT009: use valores.vAjusteBC, não vDedRed/gReeRepRes.');
         }
-        foreach (['condominios', 'imovel', 'bensMoveis', 'gLocBensMoveis'] as $grupo) {
+        foreach (['condominios', 'gLocBensMoveis'] as $grupo) {
             $propriedade = strtolower($grupo);
             if (isset($ibs->{$propriedade})) {
                 throw new InvalidArgumentException('NT009: grupo ' . $grupo . ' ainda não suportado pelo fork.');
