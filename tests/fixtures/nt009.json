@@ -88,25 +88,25 @@
           "CST": "000",
           "cClassTrib": "000001"
         }
+      },
+      "indDest": 1,
+      "dest": {
+        "CNPJ": "12345678000195",
+        "xNome": "DESTINATARIO DE TESTE",
+        "end": {
+          "endNac": {
+            "cMun": "4316808",
+            "CEP": "96810000"
+          },
+          "xLgr": "Rua Teste",
+          "nro": "100",
+          "xCpl": "Sala 1",
+          "xBairro": "Centro"
+        },
+        "fone": "51999999999",
+        "email": "teste@example.com"
       }
     },
-    "finNFSe": 0,
-    "indDest": 1,
-    "dest": {
-      "CNPJ": "12345678000195",
-      "xNome": "DESTINATARIO DE TESTE",
-      "end": {
-        "endNac": {
-          "cMun": "4316808",
-          "CEP": "96810000"
-        },
-        "xLgr": "Rua Teste",
-        "nro": "100",
-        "xCpl": "Sala 1",
-        "xBairro": "Centro"
-      },
-      "fone": "51999999999",
-      "email": "teste@example.com"
-    }
+    "finNFSe": 0
   }
 }

@@ -6,5 +6,6 @@ namespace Hadder\NfseNacional;
 enum LeiauteDps: string
 {
     case LEGADO = 'legado';
+    /** Release 1 de homologação: XSD PRODREST de 20/10/2026. */
     case NT009 = 'nt009';
 }

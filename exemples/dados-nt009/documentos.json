@@ -1,127 +1,127 @@
 {
-    "infDPS": {
-        "tpAmb": 2,
-        "dhEmi": "2026-10-20T10:00:00-03:00",
-        "verAplic": "TesteNT009",
-        "serie": "2",
-        "nDPS": "101",
-        "dCompet": "2026-10-20",
-        "tpEmit": 1,
-        "cLocEmi": "4316808",
-        "prest": {
-            "CNPJ": "12345678000195",
-            "regTrib": {
-                "opSimpNac": 1,
-                "regEspTrib": 0
-            }
+  "infDPS": {
+    "tpAmb": 2,
+    "dhEmi": "2026-10-20T10:00:00-03:00",
+    "verAplic": "TesteNT009",
+    "serie": "2",
+    "nDPS": "101",
+    "dCompet": "2026-10-20",
+    "tpEmit": 1,
+    "cLocEmi": "4316808",
+    "prest": {
+      "CNPJ": "12345678000195",
+      "regTrib": {
+        "opSimpNac": 1,
+        "regEspTrib": 0
+      }
+    },
+    "toma": {
+      "CPF": "12345678909",
+      "xNome": "TOMADOR DE TESTE"
+    },
+    "serv": {
+      "locPrest": {
+        "cLocPrestacao": "4316808"
+      },
+      "cServ": {
+        "cTribNac": "010301",
+        "cNBS": "115090000",
+        "cIntContrib": "TESTE",
+        "xDescServ": "Serviço de teste e validação"
+      }
+    },
+    "valores": {
+      "vServPrest": {
+        "vServ": "100.00"
+      },
+      "vDescCondIncond": {
+        "vDescIncond": "5.00",
+        "vDescCond": "1.00"
+      },
+      "trib": {
+        "tribMun": {
+          "tribISSQN": 1,
+          "tpRetISSQN": 1
         },
-        "toma": {
-            "CPF": "12345678909",
-            "xNome": "TOMADOR DE TESTE"
+        "tribFed": {
+          "piscofins": {
+            "CST": "01",
+            "vBCPisCofins": "95.00",
+            "pAliqPis": "0.65",
+            "pAliqCofins": "3.00",
+            "vPis": "0.62",
+            "vCofins": "2.85",
+            "tpRetPisCofins": 2
+          },
+          "vRetCP": "0.00",
+          "vRetIRRF": "6.50",
+          "vRetCSLL": "0.00"
         },
-        "serv": {
-            "locPrest": {
-                "cLocPrestacao": "4316808"
-            },
-            "cServ": {
-                "cTribNac": "010301",
-                "cNBS": "115090000",
-                "cIntContrib": "TESTE",
-                "xDescServ": "Serviço de teste e validação"
-            }
-        },
-        "valores": {
-            "vServPrest": {
-                "vServ": "100.00"
-            },
-            "vDescCondIncond": {
-                "vDescIncond": "5.00",
-                "vDescCond": "1.00"
-            },
-            "trib": {
-                "tribMun": {
-                    "tribISSQN": 1,
-                    "tpRetISSQN": 1
-                },
-                "tribFed": {
-                    "piscofins": {
-                        "CST": "01",
-                        "vBCPisCofins": "95.00",
-                        "pAliqPis": "0.65",
-                        "pAliqCofins": "3.00",
-                        "vPis": "0.62",
-                        "vCofins": "2.85",
-                        "tpRetPisCofins": 2
-                    },
-                    "vRetCP": "0.00",
-                    "vRetIRRF": "6.50",
-                    "vRetCSLL": "0.00"
-                },
-                "totTrib": {
-                    "pTotTrib": {
-                        "pTotTribFed": "13.45",
-                        "pTotTribEst": "17.00",
-                        "pTotTribMun": "2.00"
-                    }
-                }
-            },
-            "vAjusteBC": {
-                "documentos": {
-                    "docAjusteBC": [
-                        {
-                            "tpAjusteBC": "7",
-                            "vTotDoc": "20.00",
-                            "vAjusteAplic": "10.00",
-                            "docOutro": {
-                                "nDoc": "0001",
-                                "xDoc": "Comprovante de teste"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "IBSCBS": {
-            "indFinal": 1,
-            "cIndOp": "100501",
-            "tpOper": 1,
-            "tpEnteGov": 1,
-            "valores": {
-                "trib": {
-                    "gIBSCBS": {
-                        "cCredPres": "01",
-                        "gTribRegular": {
-                            "CSTReg": "000",
-                            "cClassTribReg": "000001"
-                        },
-                        "gDif": {
-                            "pDifUF": "0.00",
-                            "pDifMun": "0.00",
-                            "pDifCBS": "0.00"
-                        }
-                    },
-                    "CST": "000",
-                    "cClassTrib": "000001"
-                }
-            }
-        },
-        "finNFSe": 0,
-        "indDest": 1,
-        "dest": {
-            "CNPJ": "12345678000195",
-            "xNome": "DESTINATARIO DE TESTE",
-            "end": {
-                "endNac": {
-                    "cMun": "4316808",
-                    "CEP": "96810000"
-                },
-                "xLgr": "Rua Teste",
-                "nro": "100",
-                "xCpl": "Sala 1",
-                "xBairro": "Centro"
-            },
-            "fone": "51999999999",
-            "email": "teste@example.com"
+        "totTrib": {
+          "pTotTrib": {
+            "pTotTribFed": "13.45",
+            "pTotTribEst": "17.00",
+            "pTotTribMun": "2.00"
+          }
         }
-    }
+      },
+      "vAjusteBC": {
+        "documentos": {
+          "docAjusteBC": [
+            {
+              "tpAjusteBC": "7",
+              "vTotDoc": "20.00",
+              "vAjusteAplic": "10.00",
+              "docOutro": {
+                "nDoc": "0002",
+                "xDoc": "Comprovante de teste"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "IBSCBS": {
+      "indFinal": 1,
+      "cIndOp": "100501",
+      "tpOper": 1,
+      "tpEnteGov": 1,
+      "valores": {
+        "trib": {
+          "gIBSCBS": {
+            "cCredPres": "01",
+            "gTribRegular": {
+              "CSTReg": "000",
+              "cClassTribReg": "000001"
+            },
+            "gDif": {
+              "pDifUF": "0.00",
+              "pDifMun": "0.00",
+              "pDifCBS": "0.00"
+            }
+          },
+          "CST": "000",
+          "cClassTrib": "000001"
+        }
+      },
+      "indDest": 1,
+      "dest": {
+        "CNPJ": "12345678000195",
+        "xNome": "DESTINATARIO DE TESTE",
+        "end": {
+          "endNac": {
+            "cMun": "4316808",
+            "CEP": "96810000"
+          },
+          "xLgr": "Rua Teste",
+          "nro": "100",
+          "xCpl": "Sala 1",
+          "xBairro": "Centro"
+        },
+        "fone": "51999999999",
+        "email": "teste@example.com"
+      }
+    },
+    "finNFSe": 0
+  }
 }

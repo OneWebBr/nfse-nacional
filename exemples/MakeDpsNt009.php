@@ -5,9 +5,9 @@ require __DIR__ . '/../vendor/autoload.php';
 use Hadder\NfseNacional\Dps;
 use Hadder\NfseNacional\LeiauteDps;
 
+// Release 1 de homologação: XSD PRODREST de 20/10/2026.
 // Dados fictícios. Geração local, sem assinatura nem transmissão.
-// O perfil não seleciona o ambiente: tpAmb continua sendo informado na DPS.
-// Confirme a disponibilidade do leiaute no autorizador antes de transmitir.
+// O perfil é explícito; tpAmb não seleciona o leiaute automaticamente.
 $dados = json_decode(<<<'JSON'
 {
     "infDPS": {
@@ -77,11 +77,49 @@ $dados = json_decode(<<<'JSON'
                 }
             }
         },
-        "finNFSe": 0,
-        "indDest": 0
+        "IBSCBS": {
+            "indFinal": 1,
+            "cIndOp": "100501",
+            "tpOper": 1,
+            "tpEnteGov": 1,
+            "valores": {
+                "trib": {
+                    "gIBSCBS": {
+                        "cCredPres": "01",
+                        "gTribRegular": {
+                            "CSTReg": "000",
+                            "cClassTribReg": "000001"
+                        },
+                        "gDif": {
+                            "pDifUF": "0.00",
+                            "pDifMun": "0.00",
+                            "pDifCBS": "0.00"
+                        }
+                    },
+                    "CST": "000",
+                    "cClassTrib": "000001"
+                }
+            },
+            "indDest": 1,
+            "dest": {
+                "CNPJ": "12345678000195",
+                "xNome": "DESTINATARIO DE TESTE",
+                "end": {
+                    "endNac": {
+                        "cMun": "4316808",
+                        "CEP": "96810000"
+                    },
+                    "xLgr": "Rua Teste",
+                    "nro": "100",
+                    "xCpl": "Sala 1",
+                    "xBairro": "Centro"
+                },
+                "fone": "51999999999",
+                "email": "teste@example.com"
+            }
+        },
+        "finNFSe": 0
     }
 }
 JSON, false, 512, JSON_THROW_ON_ERROR);
-
-$dps = new Dps($dados, LeiauteDps::NT009);
-echo $dps->render();
+echo (new Dps($dados, LeiauteDps::NT009))->render();

@@ -66,9 +66,6 @@ class Dps implements DpsInterface
             $this->std = $this->leiaute === LeiauteDps::NT009
                 ? $this->normalizarNt009($dps)
                 : $this->propertiesToLower($dps);
-            if ($this->leiaute === LeiauteDps::NT009) {
-                $this->normalizarCodigosNt009();
-            }
             if (empty($this->std->version)) {
                 $this->std->version = '1.01';
             }
@@ -147,7 +144,7 @@ class Dps implements DpsInterface
             );
         }
         if ($this->leiaute === LeiauteDps::NT009) {
-            $this->adicionarCampos($infdps_inner, $this->std->infdps, ['finNFSe', 'tpNFSeDebito', 'tpNFSeCredito']);
+            $this->adicionarCampos($infdps_inner, $this->std->infdps, ['finNFSe']);
         }
         if (isset($this->std->infdps->chnfserej)) {
             $this->dom->addChild(
@@ -351,9 +348,6 @@ class Dps implements DpsInterface
                     $this->std->infdps->prest->regtrib->regaptribsn
                 );
             }
-            if ($this->leiaute === LeiauteDps::NT009) {
-                $this->adicionarCampos($regtrib_inner, $this->std->infdps->prest->regtrib, ['regApIBSCBSSN']);
-            }
             if ($this->leiaute === LeiauteDps::LEGADO || isset($this->std->infdps->prest->regtrib->regesptrib)) {
                 $this->dom->addChild(
                     $regtrib_inner,
@@ -510,10 +504,6 @@ class Dps implements DpsInterface
             }
         }
 
-        if ($this->leiaute === LeiauteDps::NT009 && (isset($this->std->infdps->inddest) || isset($this->std->infdps->dest))) {
-            $this->montarDestinatario($infdps_inner, $this->std->infdps);
-        }
-
         //TODO Fazer grupo interm
         //if (isset($this->std->interm)) {
         //    $interm_inner = $this->dom->createElement('interm');
@@ -599,9 +589,6 @@ class Dps implements DpsInterface
                 $this->std->infdps->serv->cserv->cnbs,
                 true
             );
-        }
-        if ($this->leiaute === LeiauteDps::NT009) {
-            $this->adicionarCampos($cserv_inner, $this->std->infdps->serv->cserv, ['cAtvSN']);
         }
         if (isset($this->std->infdps->serv->cserv->cintcontrib)) {
             $this->dom->addChild(
@@ -820,7 +807,7 @@ class Dps implements DpsInterface
             }
 
             if ($this->leiaute === LeiauteDps::NT009) {
-                $this->adicionarCampos($atvEvento_inner, $this->std->infdps->serv->atvevento, ['cMun', 'idAtvEvt']);
+                $this->adicionarCampos($atvEvento_inner, $this->std->infdps->serv->atvevento, ['idAtvEvt']);
             }
 
             // Endereço do evento
@@ -1479,7 +1466,7 @@ class Dps implements DpsInterface
         }
     }
 
-    /** Os nomes e a sequência são os do Anexo VI v1.04.01, não de um XSD próprio. */
+    /** Adiciona os campos na sequência do perfil selecionado. */
     private function adicionarCampos(DOMElement $pai, stdClass $dados, array $campos, array $obrigatorios = []): void
     {
         foreach ($campos as $campo) {
@@ -1494,9 +1481,9 @@ class Dps implements DpsInterface
     private function montarComercioExteriorNt009(DOMElement $pai, stdClass $dados): void
     {
         $this->adicionarCampos($pai, $dados, [
-            'mdPrestacao', 'vincPrest', 'tpMoeda', 'nFatura', 'vFatura', 'vServMoeda',
-            'mecAFComexP', 'mecAFComexT', 'movTempBens', 'nDUIMP', 'nDUE', 'mdic', 'nContCambio',
-        ], ['mdPrestacao', 'vincPrest', 'tpMoeda', 'mecAFComexP', 'mecAFComexT', 'movTempBens', 'mdic']);
+            'mdPrestacao', 'vincPrest', 'tpMoeda', 'vServMoeda',
+            'mecAFComexP', 'mecAFComexT', 'movTempBens', 'nDI', 'nRE', 'mdic',
+        ]);
     }
 
     private function montarAjusteBaseNt009(DOMElement $pai): void
@@ -1523,17 +1510,26 @@ class Dps implements DpsInterface
         $this->exigirIdentificadorNt009($inscricao, 'infDPS.prest.CNPJ/CPF');
 
         $ibs = $dps->ibscbs ?? null;
-        foreach (['finnfse', 'inddest', 'dest'] as $campo) {
-            if (isset($ibs->{$campo})) {
-                throw new InvalidArgumentException('NT009: ' . $campo . ' deve ser informado em infDPS, não em IBSCBS.');
+        if (isset($ibs->finnfse)) {
+            throw new InvalidArgumentException('NT009: finNFSe deve ser informado em infDPS, não em IBSCBS.');
+        }
+        foreach (['tpnfsecredito', 'tpnfsedebito', 'inddest', 'dest'] as $campo) {
+            if (isset($dps->{$campo})) {
+                throw new InvalidArgumentException('NT009 release 1: campo não suportado em infDPS: ' . $campo);
+            }
+        }
+        foreach ([
+            [$dps->prest->regtrib ?? null, 'prest/regTrib'],
+            [$dps->serv->cserv ?? null, 'serv/cServ'],
+            [$dps->serv->comext ?? null, 'serv/comExt'],
+            [$dps->serv->atvevento ?? null, 'serv/atvEvento'],
+        ] as [$grupo, $caminho]) {
+            if ($grupo !== null) {
+                $this->validarGrupoNt009($grupo, $caminho);
             }
         }
         if (isset($ibs->valores->trib->gibscbs->cst) || isset($ibs->valores->trib->gibscbs->cclasstrib)) {
             throw new InvalidArgumentException('NT009: CST e cClassTrib devem estar diretamente em IBSCBS.valores.trib.');
-        }
-        $comext = $dps->serv->comext ?? null;
-        if (isset($comext->ndi) || isset($comext->nre)) {
-            throw new InvalidArgumentException('NT009: use nDUIMP e nDUE em comExt, não nDI/nRE.');
         }
         if (isset($dps->valores->vdedred) || isset($ibs->valores->greerepres)) {
             throw new InvalidArgumentException('NT009: use valores.vAjusteBC, não vDedRed/gReeRepRes.');
@@ -1602,7 +1598,7 @@ class Dps implements DpsInterface
         return $dados;
     }
 
-    /** Metadados estruturais do Anexo VI, não um schema XSD. */
+    /** Metadados de montagem extraídos do XSD PRODREST de 20/10/2026. */
     private function estruturaNt009(): array
     {
         if ($this->estruturaNt009 === null) {
@@ -1639,24 +1635,6 @@ class Dps implements DpsInterface
                     $elemento->appendChild($this->dom->createTextNode((string)$item));
                     $grupo->appendChild($elemento);
                 }
-            }
-        }
-    }
-
-    private function normalizarCodigosNt009(): void
-    {
-        $dps = $this->std->infdps ?? null;
-        if (!$dps instanceof stdClass) {
-            return;
-        }
-        $campos = [[$dps, 'tpnfsecredito'], [$dps, 'tpnfsedebito']];
-        if (($dps->serv->cserv ?? null) instanceof stdClass) {
-            $campos[] = [$dps->serv->cserv, 'catvsn'];
-        }
-        foreach ($campos as [$objeto, $campo]) {
-            $valor = $objeto->{$campo} ?? null;
-            if ((is_string($valor) || is_int($valor)) && preg_match('/^[0-9]{1,2}$/D', (string)$valor)) {
-                $objeto->{$campo} = str_pad((string)$valor, 2, '0', STR_PAD_LEFT);
             }
         }
     }

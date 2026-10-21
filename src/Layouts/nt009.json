@@ -1,8 +1,9 @@
 {
   "referencia": {
-    "anexo": "Anexo VI v1.04.01 / NT009 v1.01",
-    "sha256": "103a150dd6f56ec8edcaa3a453b59a1b0e096d7cd5025d7bd06a387f141ddf39",
-    "observacao": "Mapa de montagem (nomes, ordem, grupos e repetições). Não é validador fiscal nem schema XSD. Ver tests/fixtures/REFERENCIAS.md."
+    "anexo": "PRODREST v1.01-20261020 / NT009 release 1",
+    "schema": "storage/schemes/nt009-release1-20261020/tiposComplexos_v1.01.xsd",
+    "sha256": "4f66f7c15bd3b05b3a16cbe5fa671b90c10e4c9c74276038730be1c8c794b721",
+    "observacao": "Mapa estrutural extraído do XSD oficial; não substitui sua validação."
   },
   "campos": {
     "valores/vAjusteBC": {
@@ -12,8 +13,7 @@
       "filhos": [
         "valores/vAjusteBC/pAjusteBCISSQN",
         "valores/vAjusteBC/vAjusteBCISSQN",
-        "valores/vAjusteBC/documentos",
-        "valores/vAjusteBC/vAjusteBCIBSCBSComExt"
+        "valores/vAjusteBC/documentos"
       ]
     },
     "valores/vAjusteBC/pAjusteBCISSQN": {
@@ -175,12 +175,10 @@
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/CPF",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/NIF",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/cNaoNIF",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/CAEPF",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/IM",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/xNome",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/end",
-        "valores/vAjusteBC/documentos/docAjusteBC/fornec/xLgr",
-        "valores/vAjusteBC/documentos/docAjusteBC/fornec/nro",
-        "valores/vAjusteBC/documentos/docAjusteBC/fornec/xCpl",
-        "valores/vAjusteBC/documentos/docAjusteBC/fornec/xBairro",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/fone",
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/email"
       ]
@@ -209,6 +207,18 @@
       "repetido": false,
       "filhos": []
     },
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/CAEPF": {
+      "nome": "CAEPF",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/IM": {
+      "nome": "IM",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
     "valores/vAjusteBC/documentos/docAjusteBC/fornec/xNome": {
       "nome": "xNome",
       "grupo": false,
@@ -221,7 +231,11 @@
       "repetido": false,
       "filhos": [
         "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/endNac",
-        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/endExt"
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/endExt",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xLgr",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/nro",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xCpl",
+        "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xBairro"
       ]
     },
     "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/endNac": {
@@ -280,25 +294,25 @@
       "repetido": false,
       "filhos": []
     },
-    "valores/vAjusteBC/documentos/docAjusteBC/fornec/xLgr": {
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xLgr": {
       "nome": "xLgr",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "valores/vAjusteBC/documentos/docAjusteBC/fornec/nro": {
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/nro": {
       "nome": "nro",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "valores/vAjusteBC/documentos/docAjusteBC/fornec/xCpl": {
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xCpl": {
       "nome": "xCpl",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "valores/vAjusteBC/documentos/docAjusteBC/fornec/xBairro": {
+    "valores/vAjusteBC/documentos/docAjusteBC/fornec/end/xBairro": {
       "nome": "xBairro",
       "grupo": false,
       "repetido": false,
@@ -316,12 +330,6 @@
       "repetido": false,
       "filhos": []
     },
-    "valores/vAjusteBC/vAjusteBCIBSCBSComExt": {
-      "nome": "vAjusteBCIBSCBSComExt",
-      "grupo": false,
-      "repetido": false,
-      "filhos": []
-    },
     "IBSCBS": {
       "nome": "IBSCBS",
       "grupo": true,
@@ -329,13 +337,12 @@
       "filhos": [
         "IBSCBS/indFinal",
         "IBSCBS/cIndOp",
-        "IBSCBS/indZFMALC",
         "IBSCBS/tpOper",
         "IBSCBS/gRefNFSe",
         "IBSCBS/tpEnteGov",
-        "IBSCBS/indDoacao",
-        "IBSCBS/valores",
-        "IBSCBS/gPgtoVinc"
+        "IBSCBS/indDest",
+        "IBSCBS/dest",
+        "IBSCBS/valores"
       ]
     },
     "IBSCBS/indFinal": {
@@ -346,12 +353,6 @@
     },
     "IBSCBS/cIndOp": {
       "nome": "cIndOp",
-      "grupo": false,
-      "repetido": false,
-      "filhos": []
-    },
-    "IBSCBS/indZFMALC": {
-      "nome": "indZFMALC",
       "grupo": false,
       "repetido": false,
       "filhos": []
@@ -382,8 +383,158 @@
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/indDoacao": {
-      "nome": "indDoacao",
+    "IBSCBS/indDest": {
+      "nome": "indDest",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest": {
+      "nome": "dest",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/dest/CNPJ",
+        "IBSCBS/dest/CPF",
+        "IBSCBS/dest/NIF",
+        "IBSCBS/dest/cNaoNIF",
+        "IBSCBS/dest/xNome",
+        "IBSCBS/dest/end",
+        "IBSCBS/dest/fone",
+        "IBSCBS/dest/email"
+      ]
+    },
+    "IBSCBS/dest/CNPJ": {
+      "nome": "CNPJ",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/CPF": {
+      "nome": "CPF",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/NIF": {
+      "nome": "NIF",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/cNaoNIF": {
+      "nome": "cNaoNIF",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/xNome": {
+      "nome": "xNome",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end": {
+      "nome": "end",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/dest/end/endNac",
+        "IBSCBS/dest/end/endExt",
+        "IBSCBS/dest/end/xLgr",
+        "IBSCBS/dest/end/nro",
+        "IBSCBS/dest/end/xCpl",
+        "IBSCBS/dest/end/xBairro"
+      ]
+    },
+    "IBSCBS/dest/end/endNac": {
+      "nome": "endNac",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/dest/end/endNac/cMun",
+        "IBSCBS/dest/end/endNac/CEP"
+      ]
+    },
+    "IBSCBS/dest/end/endNac/cMun": {
+      "nome": "cMun",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/endNac/CEP": {
+      "nome": "CEP",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/endExt": {
+      "nome": "endExt",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "IBSCBS/dest/end/endExt/cPais",
+        "IBSCBS/dest/end/endExt/cEndPost",
+        "IBSCBS/dest/end/endExt/xCidade",
+        "IBSCBS/dest/end/endExt/xEstProvReg"
+      ]
+    },
+    "IBSCBS/dest/end/endExt/cPais": {
+      "nome": "cPais",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/endExt/cEndPost": {
+      "nome": "cEndPost",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/endExt/xCidade": {
+      "nome": "xCidade",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/endExt/xEstProvReg": {
+      "nome": "xEstProvReg",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/xLgr": {
+      "nome": "xLgr",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/nro": {
+      "nome": "nro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/xCpl": {
+      "nome": "xCpl",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/end/xBairro": {
+      "nome": "xBairro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/fone": {
+      "nome": "fone",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "IBSCBS/dest/email": {
+      "nome": "email",
       "grupo": false,
       "repetido": false,
       "filhos": []
@@ -424,36 +575,12 @@
       "repetido": false,
       "filhos": [
         "IBSCBS/valores/trib/gIBSCBS/cCredPres",
-        "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste",
         "IBSCBS/valores/trib/gIBSCBS/gTribRegular",
-        "IBSCBS/valores/trib/gIBSCBS/gDif",
-        "IBSCBS/valores/trib/gIBSCBS/gEstornoCred",
-        "IBSCBS/valores/trib/gIBSCBS/gPagAntecipado"
+        "IBSCBS/valores/trib/gIBSCBS/gDif"
       ]
     },
     "IBSCBS/valores/trib/gIBSCBS/cCredPres": {
       "nome": "cCredPres",
-      "grupo": false,
-      "repetido": false,
-      "filhos": []
-    },
-    "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste": {
-      "nome": "gIBSCBSAjuste",
-      "grupo": true,
-      "repetido": false,
-      "filhos": [
-        "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste/vIBS",
-        "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste/vCBS"
-      ]
-    },
-    "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste/vIBS": {
-      "nome": "vIBS",
-      "grupo": false,
-      "repetido": false,
-      "filhos": []
-    },
-    "IBSCBS/valores/trib/gIBSCBS/gIBSCBSAjuste/vCBS": {
-      "nome": "vCBS",
       "grupo": false,
       "repetido": false,
       "filhos": []
@@ -507,87 +634,256 @@
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/valores/trib/gIBSCBS/gEstornoCred": {
-      "nome": "gEstornoCred",
+    "serv/comExt": {
+      "nome": "comExt",
       "grupo": true,
       "repetido": false,
       "filhos": [
-        "IBSCBS/valores/trib/gIBSCBS/gEstornoCred/vIBSEstCred",
-        "IBSCBS/valores/trib/gIBSCBS/gEstornoCred/vCBSEstCred"
+        "serv/comExt/mdPrestacao",
+        "serv/comExt/vincPrest",
+        "serv/comExt/tpMoeda",
+        "serv/comExt/vServMoeda",
+        "serv/comExt/mecAFComexP",
+        "serv/comExt/mecAFComexT",
+        "serv/comExt/movTempBens",
+        "serv/comExt/nDI",
+        "serv/comExt/nRE",
+        "serv/comExt/mdic"
       ]
     },
-    "IBSCBS/valores/trib/gIBSCBS/gEstornoCred/vIBSEstCred": {
-      "nome": "vIBSEstCred",
+    "serv/comExt/mdPrestacao": {
+      "nome": "mdPrestacao",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/valores/trib/gIBSCBS/gEstornoCred/vCBSEstCred": {
-      "nome": "vCBSEstCred",
+    "serv/comExt/vincPrest": {
+      "nome": "vincPrest",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/valores/trib/gIBSCBS/gPagAntecipado": {
-      "nome": "gPagAntecipado",
+    "serv/comExt/tpMoeda": {
+      "nome": "tpMoeda",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/vServMoeda": {
+      "nome": "vServMoeda",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/mecAFComexP": {
+      "nome": "mecAFComexP",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/mecAFComexT": {
+      "nome": "mecAFComexT",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/movTempBens": {
+      "nome": "movTempBens",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/nDI": {
+      "nome": "nDI",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/nRE": {
+      "nome": "nRE",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/comExt/mdic": {
+      "nome": "mdic",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/cServ": {
+      "nome": "cServ",
       "grupo": true,
       "repetido": false,
       "filhos": [
-        "IBSCBS/valores/trib/gIBSCBS/gPagAntecipado/refNFSe"
+        "serv/cServ/cTribNac",
+        "serv/cServ/cTribMun",
+        "serv/cServ/cNBS",
+        "serv/cServ/cIntContrib",
+        "serv/cServ/xDescServ"
       ]
     },
-    "IBSCBS/valores/trib/gIBSCBS/gPagAntecipado/refNFSe": {
-      "nome": "refNFSe",
+    "serv/cServ/cTribNac": {
+      "nome": "cTribNac",
       "grupo": false,
-      "repetido": true,
+      "repetido": false,
       "filhos": []
     },
-    "IBSCBS/gPgtoVinc": {
-      "nome": "gPgtoVinc",
+    "serv/cServ/cTribMun": {
+      "nome": "cTribMun",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/cServ/cNBS": {
+      "nome": "cNBS",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/cServ/cIntContrib": {
+      "nome": "cIntContrib",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/cServ/xDescServ": {
+      "nome": "xDescServ",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "prest/regTrib": {
+      "nome": "regTrib",
       "grupo": true,
       "repetido": false,
       "filhos": [
-        "IBSCBS/gPgtoVinc/pgto"
+        "prest/regTrib/opSimpNac",
+        "prest/regTrib/regApTribSN",
+        "prest/regTrib/regEspTrib"
       ]
     },
-    "IBSCBS/gPgtoVinc/pgto": {
-      "nome": "pgto",
+    "prest/regTrib/opSimpNac": {
+      "nome": "opSimpNac",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "prest/regTrib/regApTribSN": {
+      "nome": "regApTribSN",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "prest/regTrib/regEspTrib": {
+      "nome": "regEspTrib",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento": {
+      "nome": "atvEvento",
       "grupo": true,
-      "repetido": true,
+      "repetido": false,
       "filhos": [
-        "IBSCBS/gPgtoVinc/pgto/nPag",
-        "IBSCBS/gPgtoVinc/pgto/idTransacao",
-        "IBSCBS/gPgtoVinc/pgto/tpMeioPgto",
-        "IBSCBS/gPgtoVinc/pgto/CNPJReceb",
-        "IBSCBS/gPgtoVinc/pgto/CNPJBasePSP"
+        "serv/atvEvento/xNome",
+        "serv/atvEvento/dtIni",
+        "serv/atvEvento/dtFim",
+        "serv/atvEvento/idAtvEvt",
+        "serv/atvEvento/end"
       ]
     },
-    "IBSCBS/gPgtoVinc/pgto/nPag": {
-      "nome": "nPag",
+    "serv/atvEvento/xNome": {
+      "nome": "xNome",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/gPgtoVinc/pgto/idTransacao": {
-      "nome": "idTransacao",
+    "serv/atvEvento/dtIni": {
+      "nome": "dtIni",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/gPgtoVinc/pgto/tpMeioPgto": {
-      "nome": "tpMeioPgto",
+    "serv/atvEvento/dtFim": {
+      "nome": "dtFim",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/gPgtoVinc/pgto/CNPJReceb": {
-      "nome": "CNPJReceb",
+    "serv/atvEvento/idAtvEvt": {
+      "nome": "idAtvEvt",
       "grupo": false,
       "repetido": false,
       "filhos": []
     },
-    "IBSCBS/gPgtoVinc/pgto/CNPJBasePSP": {
-      "nome": "CNPJBasePSP",
+    "serv/atvEvento/end": {
+      "nome": "end",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "serv/atvEvento/end/CEP",
+        "serv/atvEvento/end/endExt",
+        "serv/atvEvento/end/xLgr",
+        "serv/atvEvento/end/nro",
+        "serv/atvEvento/end/xCpl",
+        "serv/atvEvento/end/xBairro"
+      ]
+    },
+    "serv/atvEvento/end/CEP": {
+      "nome": "CEP",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/endExt": {
+      "nome": "endExt",
+      "grupo": true,
+      "repetido": false,
+      "filhos": [
+        "serv/atvEvento/end/endExt/cEndPost",
+        "serv/atvEvento/end/endExt/xCidade",
+        "serv/atvEvento/end/endExt/xEstProvReg"
+      ]
+    },
+    "serv/atvEvento/end/endExt/cEndPost": {
+      "nome": "cEndPost",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/endExt/xCidade": {
+      "nome": "xCidade",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/endExt/xEstProvReg": {
+      "nome": "xEstProvReg",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/xLgr": {
+      "nome": "xLgr",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/nro": {
+      "nome": "nro",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/xCpl": {
+      "nome": "xCpl",
+      "grupo": false,
+      "repetido": false,
+      "filhos": []
+    },
+    "serv/atvEvento/end/xBairro": {
+      "nome": "xBairro",
       "grupo": false,
       "repetido": false,
       "filhos": []
