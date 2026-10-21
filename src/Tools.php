@@ -92,6 +92,10 @@ class Tools extends RestCurl
         return null;
     }
 
+    /**
+     * Assina e envia o XML já montado, sem selecionar ou alterar seu leiaute.
+     * O consumidor escolhe o perfil ao construir Dps: LEGADO (padrão) ou NT009.
+     */
     public function enviaDps($content)
     {
         //$content = $this->canonize($content);
