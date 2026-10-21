@@ -44,6 +44,20 @@ class NovosGruposTest extends TestCase
         self::assertSame(2, $xpath->query('//n:IBSCBS/n:gRefNFSe/n:refNFSe')->length);
     }
 
+    public function test_omite_folhas_vazias_sem_descartar_zero(): void
+    {
+        $dados = $this->dados();
+        $dados->infDPS->IBSCBS->tpEnteGov = '';
+        $dados->infDPS->IBSCBS->valores->trib->gIBSCBS->cCredPres = '   ';
+        $dados->infDPS->IBSCBS->indFinal = 0;
+        $dados->infDPS->IBSCBS->indDest = '0';
+        unset($dados->infDPS->IBSCBS->dest);
+        $xpath = $this->validar($dados);
+        self::assertSame(0, $xpath->query('//n:tpEnteGov | //n:cCredPres')->length);
+        self::assertSame('0', $xpath->evaluate('string(//n:IBSCBS/n:indFinal)'));
+        self::assertSame('0', $xpath->evaluate('string(//n:IBSCBS/n:indDest)'));
+    }
+
     public static function identificacoes_documentais(): array
     {
         return [['dFeNacional'], ['docFiscalOutro'], ['docOutro']];

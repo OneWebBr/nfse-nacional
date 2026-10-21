@@ -526,9 +526,6 @@ class Dps implements DpsInterface
             $this->montarIbsCbsLegado($infdps_inner);
         }
 
-        $dps = $this->dom->createElement('DPS');
-        $dps->setAttribute('versao', $this->std->version);
-        $dps->setAttribute('xmlns', 'http://www.sped.fazenda.gov.br/nfse');
         $this->dps->appendChild($infdps_inner);
         $this->dom->appendChild($this->dps);
         /*        return str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $this->dom->saveXML());*/
@@ -1631,6 +1628,9 @@ class Dps implements DpsInterface
                 if ($campo['grupo']) {
                     $this->montarGrupoNt009($grupo, $item, $filho);
                 } else {
+                    if (trim((string)$item) === '') {
+                        continue;
+                    }
                     $elemento = $this->dom->createElement($nome);
                     $elemento->appendChild($this->dom->createTextNode((string)$item));
                     $grupo->appendChild($elemento);
